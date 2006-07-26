@@ -18,3 +18,8 @@ print "$result\n";
 # To clean the last bleaching symbols
 my $result = $string->clean_last('CLEAN    ');
 print "$result\n";
+
+
+# Cleaning bleaching symbols in the beginning and end of the line
+my $result = $string->clean_all('   CLEAN    ');
+print "$result\n";

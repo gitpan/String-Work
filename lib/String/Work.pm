@@ -1,7 +1,7 @@
 package String::Work;
 use 5.008008;
 use strict;
-our $VERSION = '1.00';
+our $VERSION = '1.10';
 
 sub new {
   my $proto = shift;
@@ -64,6 +64,19 @@ return $action;
 }
 
 
+#Cleaning bleaching symbols in the beginning and end of the line
+sub clean_all {
+   my $self = shift;
+   if (@_) { @{ $self->{CLEAN_LAST} } = @_ }
+   my $action = $self->{CLEAN_LAST}->[0];
+
+   $action =~ s/\s+$//;
+   $action =~ s/^\s+//;
+    
+return $action;
+}
+
+
 1;
 __END__
 
@@ -88,6 +101,9 @@ String::Work - Module of work with the string
 
    # To clean the last bleaching symbols
    print $string->clean_last('CLEAN    ');
+
+   #Cleaning bleaching symbols in the beginning and end of the line
+   print $string->clean_all('   CLEAN    ');
 
 
 =head1 SEE ALSO
