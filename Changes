@@ -1,9 +1,11 @@
 Revision history for Perl extension String::Work.
 
+1.20  Tue Jul 27 17:00:00 2006
+Transfer of symbol in new line into the tag BR
+Transfer of tag BR into the symbol in the new line
 
 1.10  Tue Jul 25 14:00:00 2006
 Cleaning bleaching symbols in the beginning and end of the line
-
 
 1.00  Tue Jul 25 13:00:47 2006
 Release Modules

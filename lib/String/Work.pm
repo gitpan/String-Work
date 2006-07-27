@@ -1,7 +1,7 @@
 package String::Work;
 use 5.008008;
 use strict;
-our $VERSION = '1.10';
+our $VERSION = '1.20';
 
 sub new {
   my $proto = shift;
@@ -11,6 +11,8 @@ sub new {
   $self->{LOWER} = [];
   $self->{CLEAN_FIRST} = [];
   $self->{CLEAN_LAST} = [];
+  $self->{TRANSFER_BR} = [];
+  $self->{TRANSFER_NEWLINE} = [];
   bless($self, $class);
   return $self;
 }
@@ -77,6 +79,28 @@ return $action;
 }
 
 
+#Transfer of symbol in new line into the tag BR
+sub transfer_br {
+   my $self = shift;
+   if (@_) { @{ $self->{TRANSFER_BR} } = @_ }
+   my $action = $self->{TRANSFER_BR}->[0];
+
+   $action =~ s/\n/<br>/g;
+    
+return $action;
+}
+
+#Transfer of tag BR into the symbol in the new line
+sub transfer_newline {
+   my $self = shift;
+   if (@_) { @{ $self->{TRANSFER_NEWLINE} } = @_ }
+   my $action = $self->{TRANSFER_NEWLINE}->[0];
+
+   $action =~ s/<br>/\n/g;
+    
+return $action;
+}
+
 1;
 __END__
 
@@ -105,6 +129,11 @@ String::Work - Module of work with the string
    #Cleaning bleaching symbols in the beginning and end of the line
    print $string->clean_all('   CLEAN    ');
 
+   #Transfer of symbol in new line into the tag BR
+   print $string->transfer_br('kostya\nten');
+
+   #Transfer of tag BR into the symbol in the new line
+   print $string->transfer_newline('kostya<br>ten');
 
 =head1 SEE ALSO
 
